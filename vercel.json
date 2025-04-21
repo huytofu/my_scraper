@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "my_scraper/api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "my_scraper/api/index.py"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": "."
+  },
+  "crons": [
+    {
+      "path": "/api/scrape",
+      "schedule": "0 */3 * * *"
+    },
+    {
+      "path": "/api/process",
+      "schedule": "15 */3 * * *"
+    },
+    {
+      "path": "/api/cluster",
+      "schedule": "0 0,12 * * *"
+    },
+    {
+      "path": "/api/highlight",
+      "schedule": "15 0,12 * * *"
+    }
+  ]
+} 
